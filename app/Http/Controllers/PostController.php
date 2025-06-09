@@ -29,15 +29,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string|max:1000'
+            'content' => 'required|string|max:1000',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $post = Post::create([
-            'title' => $request->title,
-            'content' => $request->content
-        ]);
+        if ($request->hasFile('image_path')) { 
+            $path = $request->file('image_path')->store('posts', 'public'); 
+            $validated['image_path'] = $path;
+        }
+
+        Post::create($validated);
 
         return redirect()->route('posts.show', $post)->with('status', 'Post created successfully.');
     }
@@ -65,7 +69,8 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string'
+            'content' => 'required|string',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $post->update([
