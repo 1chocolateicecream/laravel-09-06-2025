@@ -3,7 +3,7 @@
 
     <x-error-message :errors="$errors" />
 
-    <form action="{{ route('post.create') }}" method="post">
+    <form action="{{ route('posts.store') }}" method="post">
         @csrf
 
         <div>
@@ -12,10 +12,10 @@
         </div>
         <div>
             <label for="content">Content: </label>
-            <textarea name="content" id="content">{{ old('content') }}</textarea>
+            <textarea name="content" id="content" value="{{ old('content') }}"></textarea>
         </div>
         <div>
-            <input type="submit" value="Create">
+            <button type="submit" value="Create">create</button>
         </div>
     </form>
 </x-app-layout>

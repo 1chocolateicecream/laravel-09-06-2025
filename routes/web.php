@@ -7,10 +7,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('posts', [PostController::class, 'index'])->name('post.index');
-Route::post('posts', [PostController::class, 'store'])->name('post.store');
-Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+Route::get('posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('posts/{post}/update', [PostController::class, 'update'])->name('post.update');
-Route::delete('posts/{post}/destroy', [PostController::class, 'destroy'])->name('post.destroy');
-Route::get('posts/create', [PostController::class, 'create']);
-Route::get('posts/{post}', [PostController::class, 'show'])->name('post.show');
+Route::delete('posts/{post}/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');

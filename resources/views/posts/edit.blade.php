@@ -3,7 +3,7 @@
 
     <x-error-message :errors="$errors" />
 
-    <form action="{{ route('post.update', $post) }}" method="post">
+    <form action="{{ route('posts.update', $post) }}" method="post">
         @csrf
         @method("PUT")
 
